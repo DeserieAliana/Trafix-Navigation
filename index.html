@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trafix - Traffic Route Suggestion</title>
+
+    <!-- Link to Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <!-- Link to Leaflet Routing Machine CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
+    <style>
+        #map {
+            height: 100vh; /* Makes the map fill the entire viewport height */
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <!-- Link to Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- Link to Leaflet Routing Machine JS -->
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([14.5995, 121.0276], 12);  // Metro Manila center
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Initialize Leaflet Routing Machine and set the waypoints for route suggestion
+        L.Routing.control({
+            waypoints: [
+                L.latLng(14.5995, 121.0276),  // Origin (Metro Manila center)
+                L.latLng(14.6200, 121.0400)   // Destination (example location in Metro Manila)
+            ],
+            routeWhileDragging: true  // Allow dragging the waypoints
+        }).addTo(map);
+    </script>
+</body>
+</html>
